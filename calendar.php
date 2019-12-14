@@ -1,3 +1,19 @@
+<?php
+$month = $_POST['month'];
+$year = $_POST['year'];
+// Put the variables into a single string
+$date = $month. '-' .$year;
+// Convert the date string into a unix timestamp
+$unixTimestamp = strtotime($date);
+// Get the weekday of the first day of the month (N = from 1 to 7)
+$firstDayOfMonth = date('N', $unixTimestamp);
+// Get the number of days in the month (t = from 28 to 31)
+$daysInMonth = date('t', $unixTimestamp);
+// Get the date - 1 month
+$prevDate = date_sub(date_create($month. '-' .$year), date_interval_create_from_date_string('1 month'));
+// Single out the number of days in that month
+$prevMonth = date_format($prevDate, 't');
+?>
 <!DOCTYPE html>
 <html lang='fr' dir='ltr'>
 <head>
@@ -16,14 +32,22 @@
         <div class="calendar">
           <div class="base bottom">
             <div class="days">
-              <p class="weekday">SUN</p>
-              <p class="weekday">MON</p>
-              <p class="weekday">TUE</p>
-              <p class="weekday">WED</p>
-              <p class="weekday">THU</p>
-              <p class="weekday">FRI</p>
-              <p class="weekday">SAT</p>
-              <p class="old">30</p>
+              <p class="weekday">Lun</p>
+              <p class="weekday">Mar</p>
+              <p class="weekday">Mer</p>
+              <p class="weekday">Jeu</p>
+              <p class="weekday">Ven</p>
+              <p class="weekday">Sam</p>
+              <p class="weekday">Dim</p>
+              <?php
+              if ($firstDayOfMonth > 1){
+                for ($numberOldDays = ($firstDayOfMonth - 2); $numberOldDays > 0; $numberOldDays--){ ?>
+                  <p class="old"><?= ($prevMonth - $numberOldDays) ?></p><?php
+                }
+                ?>
+                  <p class="old"><?= ($prevMonth) ?></p><?php
+              }
+              ?>
               <p>1</p>
               <p>2</p>
               <p>3</p>

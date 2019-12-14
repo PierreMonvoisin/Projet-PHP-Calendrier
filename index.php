@@ -12,7 +12,7 @@
     <div class='jumbotron shadow-lg py-5 mx-auto text-center'>
       <h2 class="w-100 text-center mb-4">Choisissez le mois et l'année de votre naissance :</h2>
       <div id="calendar">
-        <form class="form-group mr-3" action="calendar.php" method="get">
+        <form class="form-group mr-3" action="calendar.php" method="post">
           <label for="month" class="font-weight-bold mb-3">Veuillez choisir un mois :</label>
           <select name="month" class="form-control w-50 mx-auto mb-3" id="month">
             <option name="month" disabled selected>-- Mois --</option>
