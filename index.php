@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang='fr' dir='ltr'>
 <head>
-  <title>Exercice 8</title>
+  <title>Calendrier</title>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
 </head>
-
 <body class='container-fluid bg-secondary'>
   <div class='row mt-5'>
     <div class='jumbotron shadow-lg py-5 mx-auto text-center'>
@@ -32,7 +31,7 @@
           <label for="year" class="font-weight-bold mb-3">Veuillez choisir une année :</label>
           <select name="year" class="form-control w-50 mx-auto mb-3" id="year">
             <option name="year" disabled selected>-- Année --</option>
-            <?php
+            <?php // Create an automatic list of option from 1500 to today
             foreach (range(date('Y'), 1500) as $year) { ?>
               <option name="year" value="<?= $year ?>"><?= $year ?></option>
             <?php } ?>

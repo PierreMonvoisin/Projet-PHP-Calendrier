@@ -17,7 +17,7 @@ $prevMonth = date_format($prevDate, 't');
 <!DOCTYPE html>
 <html lang='fr' dir='ltr'>
 <head>
-  <title>Exercice 8</title>
+  <title>Calendrier</title>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
@@ -32,6 +32,7 @@ $prevMonth = date_format($prevDate, 't');
         <div class="calendar">
           <div class="base bottom">
             <div class="days">
+              <!-- Days of the week -->
               <p class="weekday">Lun</p>
               <p class="weekday">Mar</p>
               <p class="weekday">Mer</p>
@@ -40,56 +41,42 @@ $prevMonth = date_format($prevDate, 't');
               <p class="weekday">Sam</p>
               <p class="weekday">Dim</p>
               <?php
+              // Var for the final display of the calendar
+              $totalDay = 0;
+              // If the month doesn't start on a Monday, display last days from last month
               if ($firstDayOfMonth > 1){
-                for ($numberOldDays = ($firstDayOfMonth - 2); $numberOldDays > 0; $numberOldDays--){ ?>
-                  <p class="old"><?= ($prevMonth - $numberOldDays) ?></p><?php
+                for ($numberOldDays = ($firstDayOfMonth - 2); $numberOldDays > 0; $numberOldDays--){
+                  $totalDay++; ?>
+                  <p class="old daysBorder"><?= ($prevMonth - $numberOldDays) ?></p><?php
                 }
-                ?>
-                  <p class="old"><?= ($prevMonth) ?></p><?php
-              }
-              ?>
-              <p>1</p>
-              <p>2</p>
-              <p>3</p>
-              <p>4</p>
-              <p>5</p>
-              <p>6</p>
-              <p>7</p>
-              <p>8</p>
-              <p>9</p>
-              <p>10</p>
-              <p>11</p>
-              <p>12</p>
-              <p>13</p>
-              <p>14</p>
-              <p>15</p>
-              <p>16</p>
-              <p>17</p>
-              <p>18</p>
-              <p>19</p>
-              <p>20</p>
-              <p>21</p>
-              <p>22</p>
-              <p>23</p>
-              <p>24</p>
-              <p>25</p>
-              <p>26</p>
-              <p>27</p>
-              <p>28</p>
-              <p>29</p>
-              <p>30</p>
-              <p>31</p>
-              <p class="old">1</p>
-              <p class="old">2</p>
-              <p class="old">3</p>
+                $totalDay++; ?>
+                <p class="old daysBorder"><?= ($prevMonth) ?></p>
+              <?php }
+              // Display the day of the month
+              for ($numberDays = ($daysInMonth - 1); $numberDays > 0; $numberDays--){
+                $totalDay++; ?>
+                <p class="daysBorder"><?= ($daysInMonth - $numberDays) ?></p>
+              <?php }
+              $totalDay++; ?>
+              <p class="daysBorder"><?= $daysInMonth ?></p>
+              <?php // Add first days of the next month to complete de calendar line
+              if ($totalDay < 35){
+                for ($numberNewDays = (34 - $totalDay); $numberNewDays >= 0; $numberNewDays--){ ?>
+                  <p class="futur daysBorder"><?= ((35 - $totalDay) - $numberNewDays) ?></p>
+                <?php }
+                } else if ($totalDay < 42){
+                  for ($numberNewDays = (41 - $totalDay); $numberNewDays >= 0; $numberNewDays--){ ?>
+                    <p class="futur daysBorder"><?= ((42 - $totalDay) - $numberNewDays) ?></p>
+                  <?php }
+                } ?>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'></script>
-  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
-</body>
-</html>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
+  </body>
+  </html>
