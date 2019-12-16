@@ -13,7 +13,7 @@
       <div id="calendar">
         <form class="form-group mr-3" action="calendar.php" method="post">
           <label for="month" class="font-weight-bold mb-3">Veuillez choisir un mois :</label>
-          <select name="month" class="form-control w-50 mx-auto mb-3" id="month">
+          <select name="month" id="month" class="form-control w-50 mx-auto mb-3">
             <option name="month" disabled selected>-- Mois --</option>
             <option name="month" value="January">Janvier</option>
             <option name="month" value="February">Février</option>
@@ -29,14 +29,14 @@
             <option name="month" value="December">Décembre</option>
           </select>
           <label for="year" class="font-weight-bold mb-3">Veuillez choisir une année :</label>
-          <select name="year" class="form-control w-50 mx-auto mb-3" id="year">
+          <select name="year" id="year" class="form-control w-50 mx-auto mb-3">
             <option name="year" disabled selected>-- Année --</option>
             <?php // Create an automatic list of option from 1500 to today
             foreach (range(date('Y'), 1500) as $year) { ?>
               <option name="year" value="<?= $year ?>"><?= $year ?></option>
             <?php } ?>
           </select>
-          <button type="submit" class="btn btn-dark">Valider</button>
+          <button type="submit" id="submitButton" class="btn btn-dark" disabled>Valider</button>
         </form>
       </div>
     </div>
@@ -44,5 +44,8 @@
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'></script>
   <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
+  <script src='assets/js/script.js'>
+
+  </script>
 </body>
 </html>

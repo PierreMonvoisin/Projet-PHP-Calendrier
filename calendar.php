@@ -1,14 +1,20 @@
 <?php
+// Set local language to French
+setlocale(LC_TIME, array('fr_FR.UTF-8','fr_FR@euro','fr_FR','french'));
 $month = $_POST['month'];
 $year = $_POST['year'];
 // Put the variables into a single string
 $date = $month. '-' .$year;
+// Convert the month string into a unix timestamp
+$monthUnixTimestamp = strtotime($month);
+// Translate the month to French
+$frenchMonth = utf8_encode(strftime('%B', $monthUnixTimestamp));
 // Convert the date string into a unix timestamp
-$unixTimestamp = strtotime($date);
+$dateUnixTimestamp = strtotime($date);
 // Get the weekday of the first day of the month (N = from 1 to 7)
-$firstDayOfMonth = date('N', $unixTimestamp);
+$firstDayOfMonth = date('N', $dateUnixTimestamp);
 // Get the number of days in the month (t = from 28 to 31)
-$daysInMonth = date('t', $unixTimestamp);
+$daysInMonth = date('t', $dateUnixTimestamp);
 // Get the date - 1 month
 $prevDate = date_sub(date_create($month. '-' .$year), date_interval_create_from_date_string('1 month'));
 // Single out the number of days in that month
@@ -27,7 +33,7 @@ $prevMonth = date_format($prevDate, 't');
 <body class='container-fluid bg-secondary'>
   <div class='row mt-5'>
     <div class='jumbotron shadow-lg py-5 mx-auto text-center'>
-      <h2 class="w-100 text-center mb-4">- Calendrier -</h2>
+      <h2 id="title" class="w-100 text-center mb-4"><?= ucfirst($frenchMonth). ' ' .$year ?></h2>
       <div id="calendar">
         <div class="calendar">
           <div class="base bottom">
